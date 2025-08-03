@@ -1,5 +1,6 @@
 
 import argparse
+import os
 from importlib.resources import files
 
 def greet():
@@ -23,16 +24,27 @@ def prepare_files(prefix, number_of_problems):
 
         print(f"Created {path} file")
 
+def clean_bin_files():
+    for file in os.listdir('.'):
+        new_path = file + ".cpp"
+        if os.path.isfile(new_path):
+            os.remove(file)
+            print(f"{file} removed")
+
 def main():
     parser = argparse.ArgumentParser(description = "Tool for automating competitive programming related tasks")
 
     parser.add_argument("--greet", action="store_true", help="Print greeting message")
     parser.add_argument("--cf", nargs = 2, type = str, help="Create files for contest")
+    parser.add_argument("--clean", action="store_true", help="clean binary files")
 
     args = parser.parse_args()
 
     if args.greet:
         greet()
+
+    if args.clean:
+        clean_bin_files()
     
     if args.cf:
         prefix, number_of_problems = args.cf
