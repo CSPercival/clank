@@ -1,24 +1,27 @@
 
 import argparse
 from clank.commands.greet import greet
+from clank.commands.greet import greet_init_parser
 from clank.commands.clean import clean_bin_files
+from clank.commands.clean import clean_bin_files_init_parser
 from clank.commands.prepare_files import prepare_files
+from clank.commands.prepare_files import prepare_files_init_parser
 
 def main():
     parser = argparse.ArgumentParser(description = "Tool for automating competitive programming related tasks")
 
-    parser.add_argument("--greet", action="store_true", help="Print greeting message")
-    parser.add_argument("--cf", nargs = 2, type = str, help="Create files for contest")
-    parser.add_argument("--clean", action="store_true", help="clean binary files")
+    subparsers = parser.add_subparsers(dest="command")
+
+    greet_init_parser(subparsers)
+    clean_bin_files_init_parser(subparsers)
+    prepare_files_init_parser(subparsers)
 
     args = parser.parse_args()
 
-    if args.greet:
+    if args.command == "greet":
         greet()
-
-    if args.clean:
+    elif args.command == "clean":
         clean_bin_files()
-    
-    if args.cf:
-        prefix, number_of_problems = args.cf
-        prepare_files(prefix, int(number_of_problems))
+    elif args.command == "cf":
+        prepare_files(int(args.number_of_problems), args.prefix)
+        
