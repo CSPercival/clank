@@ -1,6 +1,14 @@
 from importlib.resources import files
 
-def prepare_files(prefix, number_of_problems):
+def prepare_files_init_parser(parser):
+    subparser = parser.add_parser("cf", help="Create files for contest")
+    subparser.add_argument("number_of_problems", type=int, help="Number of problems")
+    subparser.add_argument("prefix", nargs="?", type=str, help="File prefix (e.g. 2137, 2137Div2)")
+
+def prepare_files(number_of_problems, prefix):
+    if not prefix:
+        prefix = ""
+        
     print("Preparing files")
 
     template_path = files('clank.resources').joinpath('CF_template.cpp')
