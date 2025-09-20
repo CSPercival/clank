@@ -7,21 +7,24 @@ Clank is a lightweight Python script that automates common competitive programmi
 
 - **Greet**
   ```bash
-  clank --greet
+  clank greet
   ```
   Prints a greeting message.
 
 - **Clean**
   ```bash
-  clank --clean
+  clank clean
   ```
   Removes all binary files generated from matching `.cpp` files.
 
 - **Prepare Codeforces Contest**
   ```bash
-  clank --cf <prefix> <number_of_problems>
+  clank cf <number_of_problems> [prefix]
   ```
-  Creates `<number_of_problems>` source files named using the given `<prefix>` followed by consecutive letters of the alphabet.
+  Creates `<number_of_problems>` source files named using the given `<prefix>` (if provided) followed by consecutive letters of the alphabet. 
+  
+  If prefix is omitted, it defaults to an empty string `""`.
+
   Each file is pre-filled with a `.cpp` template.  
 
 ---
