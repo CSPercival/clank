@@ -32,7 +32,7 @@ def run(exe_name, input_file, output_file):
                     process = subprocess.run(exe_path, stdin=fin, stdout=fout, stderr=subprocess.PIPE, text=True)
     
     if process.returncode == 0:
-        print("Execution completed successfully.", file=sys.stderr)
+        print("✅ Execution completed successfully.", file=sys.stderr)
     else:
-        print("Execution failed:", process.returncode, file=sys.stderr)
+        print("❌ Execution failed:", process.returncode, file=sys.stderr)
         print("Message: ", process.stderr, file=sys.stderr)
