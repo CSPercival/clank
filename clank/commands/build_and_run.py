@@ -12,6 +12,6 @@ def build_and_run_init_parser(parser):
     subparser.add_argument("output_file", nargs="?", type=str, help="Name of the output file")
 
 def build_and_run(file_name, input_file, output_file):
-    build(file_name)
-    run(file_name, input_file, output_file)
+    if build(file_name) == 0:
+        run(file_name, input_file, output_file)
     

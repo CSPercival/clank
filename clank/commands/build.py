@@ -13,7 +13,7 @@ def build(file_name):
     file_path_extension = Path(file_name + ".cpp").resolve()
     if not file_path_extension.is_file():
         print(f"No file named {file_name}")
-        return
+        return -1
 
     cmd = ["make", "-f", makefile_path, file_path]
 
@@ -23,3 +23,5 @@ def build(file_name):
         print("✅ Compilation successful")
     else:
         print("❌ Compilation failed")
+    
+    return result.returncode
