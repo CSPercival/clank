@@ -1,5 +1,7 @@
 
 import argparse
+from clank.commands.build_and_run import build_and_run
+from clank.commands.build_and_run import build_and_run_init_parser
 from clank.commands.build import build
 from clank.commands.build import build_init_parser
 from clank.commands.clean import clean_bin_files
@@ -16,6 +18,7 @@ def main():
 
     subparsers = parser.add_subparsers(dest="command")
 
+    build_and_run_init_parser(subparsers)
     build_init_parser(subparsers)
     clean_bin_files_init_parser(subparsers)
     greet_init_parser(subparsers)
@@ -23,8 +26,10 @@ def main():
     run_init_parser(subparsers)
 
     args = parser.parse_args()
-
-    if args.command == "build":
+    
+    if args.command == "bar":
+        build_and_run(args.file_name, args.input_file, args.output_file)
+    elif args.command == "build":
         build(args.file_name)
     elif args.command == "clean":
         clean_bin_files()
