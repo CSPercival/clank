@@ -1,0 +1,51 @@
+from importlib.resources import files
+from pathlib import Path
+
+def prepare_test_enviroment_init_parser(parser):
+    subparser = parser.add_parser("test-env", help="Create test enviroment")
+    subparser.add_argument("file_to_be_tested", nargs="?", type=str, help="Name of the file that needs testing")
+    subparser.add_argument("file_with_slow_solution", nargs="?", type=str, help="Name of the file that works fine but slow")
+
+def prepare_folder(folder_name):
+    folder_path = Path(folder_name).resolve()
+    if folder_path.exists():
+        return -1
+    folder_path.mkdir()
+
+    MODEL_path = folder_name + "/" + "model.cpp"
+    SLOW_path = folder_name + "/" + "slow.cpp"
+    GEN_path = folder_name + "/" + "gen.cpp"
+    CHECKER_path = folder_name + "/" + "checker.sh"
+
+    with open(MODEL_path, "w") as f:
+        pass
+    with open(SLOW_path, "w") as f:
+        pass
+    with open(GEN_path, "w") as f:
+        pass
+    with open(CHECKER_path, "w") as f:
+        pass
+    return 0
+
+def prepare_test_enviroment(WA_file, TLE_file):
+    folder_name = "TE"
+    if WA_file:
+        WA_path = Path(WA_file)
+        WA_path_extension = Path(WA_file + ".cpp").resolve()
+        if not WA_path_extension.is_file():
+            print(f"No file named {WA_file}")
+            return
+        folder_name = WA_file + "_" + folder_name
+    
+    if TLE_file:
+        TLE_path = Path(WA_file)
+        TLE_path_extension = Path(TLE_file + ".cpp").resolve()
+        if not TLE_path_extension.is_file():
+            print(f"No file named {TLE_file}")
+            return
+        
+    print(f"Preparing testing folder named {folder_name}")
+    if prepare_folder(folder_name) != 0:
+        print(f"❌ Folder '{folder_name}' already exists")
+        return
+    print(f"✅ Testing folder named {folder_name} created successfully")

@@ -10,6 +10,8 @@ from clank.commands.greet import greet
 from clank.commands.greet import greet_init_parser
 from clank.commands.prepare_files import prepare_files
 from clank.commands.prepare_files import prepare_files_init_parser
+from clank.commands.prepare_test_enviroment import prepare_test_enviroment
+from clank.commands.prepare_test_enviroment import prepare_test_enviroment_init_parser
 from clank.commands.run import run
 from clank.commands.run import run_init_parser
 
@@ -23,6 +25,7 @@ def main():
     clean_bin_files_init_parser(subparsers)
     greet_init_parser(subparsers)
     prepare_files_init_parser(subparsers)
+    prepare_test_enviroment_init_parser(subparsers)
     run_init_parser(subparsers)
 
     args = parser.parse_args()
@@ -33,10 +36,11 @@ def main():
         build(args.file_name)
     elif args.command == "clean":
         clean_bin_files()
-    elif args.command == "greet":
-        greet()
     elif args.command == "cf":
         prepare_files(int(args.number_of_problems), args.prefix)
+    elif args.command == "greet":
+        greet()
     elif args.command == "run":
         run(args.exe_name, args.input_file, args.output_file)
-        
+    elif args.command == "test-env":
+        prepare_test_enviroment(args.file_to_be_tested, args.file_with_slow_solution)    
