@@ -31,9 +31,9 @@ def main():
     args = parser.parse_args()
     
     if args.command == "bar":
-        build_and_run(args.file_name, args.input_file, args.output_file)
+        build_and_run(args.file_name, args.input_file, args.output_file, args.debug)
     elif args.command == "build":
-        build(args.file_name)
+        build(args.file_name, args.debug)
     elif args.command == "clean":
         clean_bin_files()
     elif args.command == "create":
