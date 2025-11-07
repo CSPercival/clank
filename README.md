@@ -11,11 +11,17 @@ Clank is a lightweight Python script that automates common competitive programmi
   ```
   Does exactly what you think. Executes **Build** command and after succesfull compilation executes **Run** command.
 
+  Additional options:
+  - `-d` => Enables debug mode, causing `make` to use the debug compilation flags.
+
 - **Build**
   ```bash
   clank build <file_name>
   ```
   Execute `make` on `<file_name>` using **Makefile** stored in the **clank/resource** directory.
+
+  Additional options:
+  - `-d` => Enables debug mode, causing `make` to use the debug compilation flags.
 
 - **Clean**
   ```bash
