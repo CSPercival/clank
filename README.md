@@ -23,6 +23,14 @@ Clank is a lightweight Python script that automates common competitive programmi
   ```
   Removes all binary files generated from matching `.cpp` files.
 
+- **Create task**
+  ```bash
+  clank create <file_name>
+  ```
+  Creates single file named `<file_name>` with `.cpp` extension. 
+  
+  File is pre-filled with `CPP_template.cpp` from `clank/resources` directory.
+
 - **Greet**
   ```bash
   clank greet
@@ -37,7 +45,7 @@ Clank is a lightweight Python script that automates common competitive programmi
   
   If prefix is omitted, it defaults to an empty string `""`.
 
-  Each file is pre-filled with a `.cpp` template. 
+  Each file is pre-filled with a `CF_template.cpp` from `clank/resources` directory. 
 
 - **Run**
   ```bash

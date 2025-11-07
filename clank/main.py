@@ -6,6 +6,8 @@ from clank.commands.build import build
 from clank.commands.build import build_init_parser
 from clank.commands.clean import clean_bin_files
 from clank.commands.clean import clean_bin_files_init_parser
+from clank.commands.create_task import create_task
+from clank.commands.create_task import create_task_init_parser
 from clank.commands.greet import greet
 from clank.commands.greet import greet_init_parser
 from clank.commands.prepare_files import prepare_files
@@ -21,6 +23,7 @@ def main():
     build_and_run_init_parser(subparsers)
     build_init_parser(subparsers)
     clean_bin_files_init_parser(subparsers)
+    create_task_init_parser(subparsers)
     greet_init_parser(subparsers)
     prepare_files_init_parser(subparsers)
     run_init_parser(subparsers)
@@ -33,6 +36,8 @@ def main():
         build(args.file_name)
     elif args.command == "clean":
         clean_bin_files()
+    elif args.command == "create":
+        create_task(args.name)
     elif args.command == "greet":
         greet()
     elif args.command == "cf":
