@@ -5,8 +5,9 @@ from importlib.resources import files
 def build_init_parser(parser):
     subparser = parser.add_parser("build", help="Build provided file.cpp")
     subparser.add_argument("file_name", type=str, help="Name of file to compile")
+    subparser.add_argument("-d", "--debug", action="store_true", help="Enable debug mode")
 
-def build(file_name):
+def build(file_name, debug_option_enabled):
     makefile_path = files('clank.resources').joinpath('Makefile')
 
     file_path = Path(file_name)
@@ -15,7 +16,11 @@ def build(file_name):
         print(f"No file named {file_name}")
         return -1
 
-    cmd = ["make", "-f", makefile_path, file_path]
+    mode = "release"
+    if(debug_option_enabled):
+        mode = "debug"
+
+    cmd = ["make", "-f", makefile_path, f"MODE={mode}", file_path]
 
     result = subprocess.run(cmd)
 

@@ -33,7 +33,7 @@ def main():
     if args.command == "bar":
         build_and_run(args.file_name, args.input_file, args.output_file)
     elif args.command == "build":
-        build(args.file_name)
+        build(args.file_name, args.debug)
     elif args.command == "clean":
         clean_bin_files()
     elif args.command == "create":
